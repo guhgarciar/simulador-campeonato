@@ -3,6 +3,7 @@ import random
 class Time:
     def __init__ (self, nome_do_time: str):
         self.nome: str = nome_do_time
+        self.pontos: int = 0
         self.vitorias: int = 0
         self.empates: int = 0
         self.derrotas: int = 0
@@ -12,7 +13,7 @@ class Time:
         self.amarelo: int = 0
         self.vermelho: int = 0
 
-times_campeonato = ["Athletico-PR", "Atlético-MG", "Bahia", "Botafogo", "Chapecoense", "Corinthians", "Coritiba", "Cruzeiro", "Flamengo", "Fluminense", "Grêmio", "Internacional", "Mirassol", "Palmeiras", "Red Bull Bragantino", "Remo", "Santos", "São Paulo", "Vasco", "Vitória"]
+times_campeonato = ["Athletico-PR", "Atlético-MG"]
 times_cadastro = []
 
 for i in times_campeonato:
@@ -59,3 +60,14 @@ for i in range(len(times_cadastro)):
             if teve_vermelho_visitante == 1:
                 opcoes_vermelho = [1, 1, 1, 1, 1, 1, 1, 2, 2, 3]
                 time_visitante.vermelho += random.choice(opcoes_vermelho)
+
+tabela_organizada = sorted(times_cadastro, key = lambda time: time.pontos, reverse=True)
+
+print("\n=== TABELA DE CLASSIFICAÇÃO ===")
+# Deixamos o cabeçalho com larguras fixas batendo com o laço de baixo
+print(f" {'Pos':<3} | {'Time':<15} | {'P':>3} | {'V':>2} | {'E':>2} | {'D':>2} | {'GP':>3} | {'GS':>3} | {'SG':>3} | {'A':>3} | {'V':>2}")
+print("-" * 75)
+
+for posicao, time in enumerate(tabela_organizada):
+    # Formatando cada coluna com tamanho fixo e alinhamento perfeito
+    print(f"{posicao + 1:>2}º  | {time.nome:<15} | {time.pontos:>3} | {time.vitorias:>2} | {time.empates:>2} | {time.derrotas:>2} | {time.gols_pro:>3} | {time.gols_sofridos:>3} | {time.saldo:>3} | {time.amarelo:>3} | {time.vermelho:>2}")
