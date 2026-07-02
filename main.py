@@ -1,17 +1,5 @@
 import random
-
-class Time:
-    def __init__ (self, nome_do_time: str):
-        self.nome: str = nome_do_time
-        self.pontos: int = 0
-        self.vitorias: int = 0
-        self.empates: int = 0
-        self.derrotas: int = 0
-        self.gols_pro: int = 0
-        self.gols_sofridos: int = 0
-        self.saldo: int = 0
-        self.amarelo: int = 0
-        self.vermelho: int = 0
+from models.time import Time
 
 times_campeonato = ["Athletico-PR", "Atlético-MG"]
 times_cadastro = []
@@ -65,7 +53,7 @@ tabela_organizada = sorted(times_cadastro, key = lambda time: time.pontos, rever
 
 print("\n=== TABELA DE CLASSIFICAÇÃO ===")
 # Deixamos o cabeçalho com larguras fixas batendo com o laço de baixo
-print(f" {'Pos':<3} | {'Time':<15} | {'P':>3} | {'V':>2} | {'E':>2} | {'D':>2} | {'GP':>3} | {'GS':>3} | {'SG':>3} | {'A':>3} | {'V':>2}")
+print(f"{'Pos':<4} | {'Time':<15} | {'P':>3} | {'V':>2} | {'E':>2} | {'D':>2} | {'GP':>3} | {'GS':>3} | {'SG':>3} | {'A':>3} | {'V':>2}")
 print("-" * 75)
 
 for posicao, time in enumerate(tabela_organizada):
