@@ -15,39 +15,20 @@ for i in range(len(times_cadastro)):
             time_visitante = times_cadastro[j]
             gols_time_casa = int(input(f"Gols do time {time_casa.nome}: "))
             gols_time_visitante = int(input(f"Gols do time {time_visitante.nome}: "))
-            if gols_time_casa > gols_time_visitante:
-                time_casa.pontos += 3
-                time_casa.vitorias += 1
-                time_visitante.derrotas += 1
-            elif gols_time_casa == gols_time_visitante:
-                time_casa.pontos += 1
-                time_casa.empates += 1
-                time_visitante.pontos += 1
-                time_visitante.empates += 1
-            else:
-                time_visitante.pontos += 3
-                time_casa.derrotas += 1
-                time_visitante.vitorias += 1
-            time_casa.gols_pro += gols_time_casa
-            time_casa.gols_sofridos += gols_time_visitante
-            time_casa.saldo = (time_casa.gols_pro - time_casa.gols_sofridos)
-            time_visitante.gols_pro += gols_time_visitante
-            time_visitante.gols_sofridos += gols_time_casa
-            time_visitante.saldo = (time_visitante.gols_pro - time_visitante.gols_sofridos)
-            teve_amarelo_casa = random.choice([True, False])
-            if teve_amarelo_casa == True:
-                time_casa.amarelo += random.randint(1, 5)
-            teve_vermelho_casa = random.randint(1, 10)
-            if teve_vermelho_casa == 1:
-                opcoes_vermelho = [1, 1, 1, 1, 1, 1, 1, 2, 2, 3]
-                time_casa.vermelho += random.choice(opcoes_vermelho)
-            teve_amarelo_visitante = random.choice([True, False])
-            if teve_amarelo_visitante == True:
-                time_visitante.amarelo += random.randint(1, 5)
-            teve_vermelho_visitante = random.randint(1, 10)
-            if teve_vermelho_visitante == 1:
-                opcoes_vermelho = [1, 1, 1, 1, 1, 1, 1, 2, 2, 3]
-                time_visitante.vermelho += random.choice(opcoes_vermelho)
+            amarelos_casa = 0
+            if random.choice([True, False]):
+                amarelos_casa = random.randint(1, 5)
+            vermelhos_casa = 0    
+            if random.randint(1, 10) == 1:
+                vermelhos_casa = random.choice([1, 1, 1, 1, 1, 1, 1, 2, 2, 3])
+            amarelos_visitante = 0
+            if random.choice([True, False]):
+                amarelos_visitante += random.randint(1, 5)
+            vermelhos_visitante = 0
+            if random.randint(1, 10) == 1:
+                vermelhos_visitante = random.choice([1, 1, 1, 1, 1, 1, 1, 2, 2, 3])
+            time_casa.registrar_partida(gols_time_casa, gols_time_visitante, amarelos_casa, vermelhos_casa)
+            time_visitante.registrar_partida(gols_time_visitante, gols_time_casa, amarelos_visitante, vermelhos_visitante)
 
 tabela_organizada = sorted(times_cadastro, key = lambda time: time.pontos, reverse=True)
 

@@ -10,3 +10,20 @@ class Time:
         self.saldo: int = 0
         self.amarelo: int = 0
         self.vermelho: int = 0
+    
+    def registrar_partida(self, gols_feitos: int, gols_tomados: int, cartoes_a: int, cartoes_v: int):
+        self.gols_pro += gols_feitos
+        self.gols_sofridos += gols_tomados
+        self.amarelo += cartoes_a
+        self.vermelho += cartoes_v
+
+        self.saldo = self.gols_pro - self.gols_sofridos
+
+        if gols_feitos > gols_tomados:
+           self.pontos += 3
+           self.vitorias += 1
+        elif gols_feitos == gols_tomados:
+            self.pontos += 1
+            self.empates += 1
+        else:
+            self.derrotas += 1
